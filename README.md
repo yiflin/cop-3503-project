@@ -3,7 +3,8 @@ Final project for COP 3503 Spring 2017. Text based adventure game in C++.
 
 things that need to be done:
 
-make something that stores a bunch of possible questions and answers for the sphinx riddle, and randomly selects one and writes it into SPHINX_RIDDLE.txt at start of program
+make something that stores a bunch of possible questions and answers for the sphinx riddle, and randomly selects one and writes it into SPHINX_RIDDLE.txt at start of program--- base done
+Still have to write riddle
 
 edit Trolls class to have randomly generated time until sunrise
 
