@@ -2,6 +2,7 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
+#include <algorithm>
 
 // use .insert() to put in line breaks
 // std::string Print::textWrap(std::string line)
