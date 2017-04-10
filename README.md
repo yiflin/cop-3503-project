@@ -15,3 +15,5 @@ write dragon quest
 write castle quest
 
 write junctions 0-3 and training scenes
+
+don't use + to concat strings
