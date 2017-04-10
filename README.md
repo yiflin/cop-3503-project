@@ -5,7 +5,9 @@ things that need to be done:
 
 make something that stores a bunch of possible questions and answers for the sphinx riddle, and randomly selects one and writes it into SPHINX_RIDDLE.txt at start of program
 
-write Player class, edit all of the quests to take in player stats to decide whether player defeats monster or not
+edit Trolls class to have randomly generated time until sunrise
+
+edit Player class, edit all of the quests to take in player stats to decide whether player defeats monster or not
 
 write dragon quest
 
