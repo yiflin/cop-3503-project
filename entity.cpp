@@ -65,11 +65,21 @@ Entity::Entity(int str, int sth) {
     this->stealth = sth;
 }
 
-void Entity::add_strength(int x){
-  this->strength = x;
+void Entity::add_strength(){
+  int i = 0;
+  srand(time(NULL));
+  i = std::rand() % 10;
+  cout << "You increased your strength by: " << i << "points" << "\n";
+
+  this->strength += i;
 }
-void Entity::add_stealth(int x){
-  this->stealth = x;
+void Entity::add_stealth(){
+  int i = 0;
+  srand(time(NULL));
+  i = std::rand() % 10;
+  cout << "You increased your stealth by: " << i << "points" << "\n";
+
+  this->strength += i;
 }
 int Entity::getStrength(){
   return strength;
