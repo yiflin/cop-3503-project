@@ -4,15 +4,20 @@
 #include <sstream>
 #include <algorithm>
 
+
 // use .insert() to put in line breaks
 // std::string Print::textWrap(std::string line)
 // {
 //
 // }
 
+//universal temp
+std::string temp;
+
 int countLines(std::string fileName)
 {
-  std::ifstream myFile(fileName + ".txt");
+  temp = std::string(fileName)+std::string(".txt");
+  std::ifstream myFile(temp.c_str());
   // skips empty lines (I think)
   return std::count( std::istreambuf_iterator<char>(myFile), std::istreambuf_iterator<char>(), '\n');
 }
@@ -73,7 +78,8 @@ std::string Trolls::sceneloop(std::string start)
     }
     else
     {
-      file.open(currentFrame + ".txt"); //TODO add exception handling
+      temp = std::string(currentFrame)+std::string(".txt");
+      file.open(temp.c_str()); //TODO add exception handling
       std::getline(file, line);
       std::cout << '\n' << line << std::endl;
 
@@ -122,7 +128,8 @@ std::string Junction::sceneloop(std::string start)
   bool go = true;
   while (go)
   {
-      file.open(currentFrame + ".txt"); //TODO add exception handling
+      temp = std::string(currentFrame)+ std::string(".txt");
+      file.open(temp.c_str()); //TODO add exception handling
       std::getline(file, line);
       std::cout << '\n' << line << std::endl;
 
@@ -159,12 +166,14 @@ std::string Sphinx::sceneloop(std::string start)
   std::string line;
   std::ifstream file;
 
-  file.open(start + ".txt"); //TODO add exception handling
+  temp = std::string(start)+std::string(".txt");
+  file.open(temp.c_str()); //TODO add exception handling
   std::getline(file, line);
   std::cout << '\n' << line << std::endl;
   file.close();
 
-  file.open("SPHINX_RIDDLE.txt"); //TODO add exception handling
+  temp = std::string("SPHINX_RIDDLE.txt");
+  file.open(temp.c_str()); //TODO add exception handling
   std::getline(file, line);
   std::cout << '\n' << line << std::endl;
 
