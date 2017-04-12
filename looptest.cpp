@@ -78,12 +78,10 @@ std::string Trolls::sceneloop(std::string start)
       std::cout << '\n' << line << std::endl;
 
       lineCount = countLines(currentFrame);
-      std::cout << "lineCount: " << lineCount << std::endl;
 
       if (lineCount < 3 || line.find("GAME OVER") != std::string::npos) // there is no next scene or there is only one next scene
       {
         go = false;
-        file.close();
       }
       else
       {
@@ -94,20 +92,14 @@ std::string Trolls::sceneloop(std::string start)
         }
 
         currentFrame = line;
-        std::cout << currentFrame << std::endl;
-        file.close();
 
-        if (currentFrame.compare("TROLLS_HIDE") == 0)
-        {
-          hideCount++;
-          std::cout << hideCount << std::endl;
-        }
       }
     }
 
   }
 
   std::getline(file, line);
+
 
   return line;
 
@@ -132,7 +124,6 @@ std::string Junction::sceneloop(std::string start)
       std::cout << '\n' << line << std::endl;
 
       lineCount = countLines(currentFrame);
-      std::cout << "JUNCTION lineCount: " << lineCount << std::endl;
 
 
       if (lineCount < 3 || line.find("GAME OVER") != std::string::npos) // there is no next scene or there is only one next scene
@@ -142,7 +133,7 @@ std::string Junction::sceneloop(std::string start)
       else
       {
         command = input.readInput(lineCount);
-        if (command == 1) go = false;
+
         for (int i = -1; i < command; i++)
         {
           std::getline(file, line);
@@ -154,7 +145,7 @@ std::string Junction::sceneloop(std::string start)
 
   }
 
-  return currentFrame;
+
 
 }
 
@@ -208,9 +199,7 @@ std::string Sphinx::sceneloop(std::string start)
 
   }
 
-  file.close();
 
-  return "JUNCTION2";
 
 }
 
@@ -232,9 +221,6 @@ void Game::gameloop()
     {
       scene = new Junction();
     }
-    std::cout << "gameloop current: " << current << std::endl;
-    current = scene->sceneloop(current); //TODO redundant current
-    std::cout << "gameloop current: " << current << std::endl;
 
   }
 }

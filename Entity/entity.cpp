@@ -64,12 +64,6 @@ Entity::Entity(int str, int sth) {
     this->strength = str;
     this->stealth = sth;
 }
-
-void Entity::add_strength(int x){
-  this->strength = x;
-}
-void Entity::add_stealth(int x){
-  this->stealth = x;
 }
 int Entity::getStrength(){
   return strength;
