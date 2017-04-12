@@ -92,17 +92,14 @@ std::string Trolls::sceneloop(std::string start)
         }
 
         currentFrame = line;
-        file.close();
 
-        if (currentFrame.compare("TROLLS_HIDE") == 0)
-          hideCount++;
       }
     }
 
   }
 
   std::getline(file, line);
-  file.close();
+
 
   return line;
 
@@ -128,6 +125,7 @@ std::string Junction::sceneloop(std::string start)
 
       lineCount = countLines(currentFrame);
 
+
       if (lineCount < 3 || line.find("GAME OVER") != std::string::npos) // there is no next scene or there is only one next scene
       {
         go = false;
@@ -135,6 +133,7 @@ std::string Junction::sceneloop(std::string start)
       else
       {
         command = input.readInput(lineCount);
+
         for (int i = -1; i < command; i++)
         {
           std::getline(file, line);
@@ -146,11 +145,7 @@ std::string Junction::sceneloop(std::string start)
 
   }
 
-  std::getline(file, line);
-  currentFrame = line;
-  file.close();
 
-  return line;
 
 }
 
@@ -204,10 +199,7 @@ std::string Sphinx::sceneloop(std::string start)
 
   }
 
-  std::getline(file, line);
-  file.close();
 
-  return line;
 
 }
 
@@ -229,7 +221,7 @@ void Game::gameloop()
     {
       scene = new Junction();
     }
-    current = scene->sceneloop(current); //TODO redundant current
+
   }
 }
 
