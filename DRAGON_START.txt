@@ -1,0 +1,3 @@
+Dragon! Enter 1 to attack, 0 to sneak past.
+DRAGON_STEALTH
+DRAGON_ATTACK
