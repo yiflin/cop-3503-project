@@ -1,0 +1,3 @@
+TRAINING0_FAIL message.
+STOP
+START

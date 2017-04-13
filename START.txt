@@ -1,3 +1,6 @@
-You are on a road. Enter 1 to go forward. Enter 0 to explore.
-TRAINING1_START
+You are on a road.
+Enter 1 to go forward.
+Enter 0 to explore.
+STOP
+TRAINING0_START
 TROLLS_START
