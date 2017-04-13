@@ -1,6 +1,0 @@
-Junction 3. You are on a road.
-Enter 1 to go forward.
-Enter 0 to explore.
-STOP
-TRAINING3_START
-CASTLE_START
