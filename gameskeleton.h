@@ -6,7 +6,7 @@
 class Input
 {
 public:
-  int readInput(int);
+  int readInput(int, int);
 };
 
 class Game
@@ -23,7 +23,7 @@ public:
 class Scene
 {
 public:
-  virtual std::string sceneloop(std::string);
+  virtual std::string sceneloop(std::string start) { return "GAME OVER"; };
 };
 
 
@@ -56,6 +56,15 @@ class Junction: public Scene
 public:
   std::string sceneloop(std::string);
 };
+
+class Training: public Scene
+{
+public:
+  std::string sceneloop(std::string);
+};
+
+//put in a class
+int countLines(std::string);
 
 // class Print
 // {
