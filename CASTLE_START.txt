@@ -1,4 +1,0 @@
-Castle start message. Enter 1 to do something, enter 0 to do something else.
-STOP
-CASTLE_HIDE
-CASTLE_ATTACK

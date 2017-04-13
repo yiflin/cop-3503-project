@@ -1,2 +1,0 @@
-A sphinx! Answer a riddle.
-STOP

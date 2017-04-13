@@ -1,6 +1,0 @@
-JUNCTION1 You are on a road.
-Enter 1 to go forward.
-Enter 0 to explore.
-STOP
-TRAINING1_START
-SPHINX_START

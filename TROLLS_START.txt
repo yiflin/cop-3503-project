@@ -1,4 +1,0 @@
-Trolls! Enter 1 to attack, 0 to hide.
-STOP
-TROLLS_HIDE
-TROLLS_ATTACK
