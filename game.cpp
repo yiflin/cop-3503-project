@@ -87,7 +87,7 @@ void dragonScene (Player &mainPlayer) {
 void sphinxScene (Player &mainPlayer) {
     string riddleAnswer;
     Sphinx Sphinx;
-    cout << "You encounter a Sphinx, it wants to ask you three riddles before you may pass." << endl;
+    cout << "You encounter a Sphinx, it wants to ask you three riddles before you may pass. You have one try for each riddle so answer carefully." << endl;
     for (int i = 1; i < 4; i++) {
         cout << Sphinx.getRiddle(i) << endl;
         cin >> riddleAnswer;
@@ -171,7 +171,27 @@ void cave (Player &mainPlayer){
         }
     }
 }
-
+void forest(Player &mainPlayer){
+    
+    cout << "While exploring you enter a forest. You spot a little boy wandering around alone."<<endl;
+    
+    int choice = 0;
+    while(true){
+        cout << "What would you like to do?\n0. He's probably lost. Offer help.\n1. I don't talk to strangers. Continue walking." << endl;
+        cin >> choice;
+        if(cin.fail() || choice < 0 || choice > 1){
+            cout << "Invalid Input, try again \n";
+            cin.clear();
+            cin.ignore(10000,'\n');
+        }else if(choice == 1 ){
+            cout << "The boy thanks you for your kindness and offers you new shoes. \n";
+            mainPlayer.addStealth();
+        }
+        else{
+            return;
+        }
+    }
+}
 void junction(int junctionType, Player &mainPlayer){
     
 switch(junctionType){
@@ -179,7 +199,7 @@ switch(junctionType){
     tavern(mainPlayer);
     break;
   case 1:
-    //sphinxSideQuest(mainPlayer);
+    forest(mainPlayer);
     break;
   case 2:
     cave(mainPlayer);
@@ -238,7 +258,7 @@ int main() {
         default:
             break;
     }
-    
+    while(true){
     cout << "Welcome, "<<mainPlayer.getName()<<". You are on a road.\n0. Go forward.\n1. Explore.\n2. View stats."<<endl;
     
     cin >> input;
@@ -278,7 +298,7 @@ int main() {
             if(questOnePass == false){
                 junction(0, mainPlayer);
             }else if(questTwoPass == false){
-                //junction(1, mainPlayer);
+                junction(1, mainPlayer);
             }else if(questThreePass == false){
                 junction(2, mainPlayer);
             }
@@ -286,7 +306,44 @@ int main() {
             mainPlayer.printStats(race);
         }
     }
-    
-  return 0;
+    int decide;
+    cout << "Would you like to try again?\n0. Yes\n1. No"<<endl;
+    cin >> decide;
+    if(cin.fail() || decide > 1 || decide < 0){
+        cin.clear();
+        cout <<"Selection not found. Try again.\n";
+        cin.ignore(10000,'\n');
+    }
+        if(decide == 0){
+            alive = true;
+            switch(race){
+                case 1:
+                    mainPlayer.setStrength(1);
+                    mainPlayer.setStealth(10);
+                    break;
+                case 2:
+                    mainPlayer.setStrength(10);
+                    mainPlayer.setStealth(1);
+                    break;
+                case 3:
+                    mainPlayer.setStrength(8);
+                    mainPlayer.setStealth(3);
+                    break;
+                case 4:
+                    mainPlayer.setStrength(3);
+                    mainPlayer.setStealth(8);
+                    break;
+                case 5:
+                    mainPlayer.setStrength(5);
+                    mainPlayer.setStealth(5);
+                    break;
+                default:
+                    break;
+            }
+        }
+        else{
+            return 0;
+        }
+    }
     
 }
