@@ -63,7 +63,7 @@ void dragonScene (Player &mainPlayer) {
     
     switch (input) {
         case 0: if (mainPlayer.getStealth() > dragon.getStealth()) {
-            cout << "You successfully snuck past the dragon while it slept.\n" << endl;
+            cout << "You successfully snuck past the dragon while it slept." << endl;
             questThreePass = true;
         }
         else {
@@ -96,14 +96,18 @@ void sphinxScene (Player &mainPlayer) {
             cout << "Correct!" << endl;
             break;
         }
+        else{
             cout << "WRONG!!!!!!!!" << endl;
-            Sphinx.remainingAttempts--;
+        Sphinx.remainingAttempts--;
+        if (Sphinx.remainingAttempts == 0){
+            break;
             }
         }
     }
     if (Sphinx.getRemainingAttempts() != 0) {
         cout << "\"Congratulations. You have passed the test of time.\"" << endl;
         if(Sphinx.getRemainingAttempts() == 3){
+        cout << "\"Take this sword, as a gift. It might prove useful in the future.\"" << endl;
             mainPlayer.setHasSword();
         }
         questTwoPass = true;
@@ -125,6 +129,7 @@ void tavern(Player &mainPlayer){
             cin.clear();
             cin.ignore(10000,'\n');
         }else if(choice == 1 && fightCount < 3){
+            cout << "You enter the ring and made quick work of your opponent \n";
             mainPlayer.addStrength();
             ++fightCount;
         }else if(choice == 1 && fightCount >= 3){
@@ -158,8 +163,10 @@ void cave (Player &mainPlayer){
             else if (choice == 1) {
                 cout << "You managed to escape from the cave beast" << endl;
                 mainPlayer.addStealth();
+                break;
             }
         }
+        else if (i == 5) {
             cout << "You have discovered a treasure chest at the end of the cave.\nEagerly, you open the chest and discover that it is empty.\nYou decide to leave the cave dissapointed.";
         }
     }
@@ -220,6 +227,7 @@ int main() {
         cin >> race;
         if(cin.fail() || race > 5 || race < 1){
             cin.clear();
+            cout <<"Selection not found. Try again.\n";
             cin.ignore(10000,'\n');
         }else{
             break;
@@ -255,6 +263,7 @@ int main() {
     
     cin >> input;
     
+    if(cin.fail() || input < 0 || input > 2){
         cin.clear();
         cout <<"Selection not found. Try again.\n";
         cin.ignore(10000,'\n');
@@ -271,6 +280,7 @@ int main() {
         cout<<"You are back on a road.\n0. Go forward.\n1. Explore.\n2. View stats."<<endl;
         cin>>input;
         
+        if(cin.fail() || input < 0 || input > 2){
             cin.clear();
             cout <<"Selection not found. Try again.\n";
             cin.ignore(10000,'\n');
