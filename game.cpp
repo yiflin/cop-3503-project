@@ -32,7 +32,17 @@ void trollScene(Player &mainPlayer){
     int input;
     int hideCount = 0;
     cout<<"Trolls!\n0. Hide.\n1. Attack the trolls."<<endl;
-    cin>>input;
+    while(true){
+     cin>>input;
+     if(cin.fail() || choice < 0 || choice > 1){
+            cout << "Invalid Input, try again \n";
+            cin.clear();
+            cin.ignore(10000,'\n');
+        }
+        else{
+            break;
+        }
+    }
     Player troll(15,1,"Troll");
     while(hideCount != 6 && input == 0){
         hideCount++;
