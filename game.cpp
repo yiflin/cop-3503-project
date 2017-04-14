@@ -183,9 +183,10 @@ void forest(Player &mainPlayer){
             cout << "Invalid Input, try again \n";
             cin.clear();
             cin.ignore(10000,'\n');
-        }else if(choice == 1 ){
+        }else if(choice == 0 ){
             cout << "The boy thanks you for your kindness and offers you new shoes. \n";
             mainPlayer.addStealth();
+            break;
         }
         else{
             return;
