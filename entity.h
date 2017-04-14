@@ -166,33 +166,3 @@ string Sphinx::getRiddleAns(int riddleNum) {
 int Sphinx::getRemainingAttempts() {
     return remainingAttempts;
 }
-
-
-/******************
-// main function //
-//to test classes//
-******************/
-/*int main (){
-  int str;
-  int sth;
-  string name;
-  cout << "Enter Name: ";
-  cin >> name;
-  cout << "Enter Strength then Stealth separated by a space then hit enter: ";
-  cin >> str;
-  cin >> sth;
-  Player player(str, sth, name);
-  cout << "Used get functions: " << endl;
-  cout << "Name: " << player.getName() <<endl;
-  cout << "Strength: " << player.getStrength() << " Stealth: " << player.getStealth() << endl;
-  cout << "Has Sword? ";
-  if(player.getHasSword()) {
-        cout << "Yes" << endl;
-    }
-    else{
-        cout << "No" << endl;
-    }
-  cout << "\nUsed printStats() function: " << endl;
-  player.printStats();
-  return 0;
-}*/
