@@ -10,7 +10,6 @@ bool questOnePass = false;
 bool questTwoPass = false;
 bool questThreePass = false;
 
-
 bool fight(Player you, Player enemy){
     int rng = rand() % 100 +1;
     if(you.getStrength() >= enemy.getStrength()){
@@ -41,12 +40,12 @@ void trollScene(Player &mainPlayer){
         
     }
     if(hideCount == 6){
-        cout<<"You sneeze and your location is revealed. The trolls start to close in. You begin to run but you know it's too late. You've been crouching behind a rock all night and your legs are tired. Suddenly the sun starts to rise and you hear a strange groan behind you. You turn, and to your surprise, the trolls have been turned to stone. You keep walking."<<endl;
+        cout<<"You sneeze and your location is revealed. The trolls start to close in. You begin to run but you know it's too late. You've been crouching behind a rock all night and your legs are tired. Suddenly the sun starts to rise and you hear a strange groan behind you. You turn, and to your surprise, the trolls have been turned to stone. You keep walking.\n"<<endl;
             questOnePass = true;
     }
     if(input == 1){
         if(fight(mainPlayer, troll)){
-            cout<<"You attack the trolls and succeed!"<<endl;
+            cout<<"You attack the trolls and succeed!\n"<<endl;
             questOnePass = true;
         }else{
             cout<<"You attack the trolls and die. Game over."<<endl;
@@ -63,23 +62,23 @@ void dragonScene (Player &mainPlayer) {
     
     switch (input) {
         case 0: if (mainPlayer.getStealth() > dragon.getStealth()) {
-            cout << "You successfully snuck past the dragon while it slept." << endl;
+            cout << "You successfully snuck past the dragon while it slept.\n" << endl;
             questThreePass = true;
         }
         else {
-            cout << "You woke the dragon and in a fit of rage it kills you." << endl;
+            cout << "You woke the dragon and in a fit of rage it kills you.\n" << endl;
             alive = false;
         }
         case 1: if (mainPlayer.getHasSword()) {
-            cout << "You use your sword and effortlessly slay the dragon." << endl;
+            cout << "You use your sword and effortlessly slay the dragon.\n" << endl;
             questThreePass = true;
         }
         else if (fight (mainPlayer, dragon)) {
-            cout << "You fought the dragon and slew it." << endl;
+            cout << "You fought the dragon and slew it.\n" << endl;
             questThreePass = true;
         }
         else {
-            cout << "The dragon slew you." << endl;
+            cout << "The dragon slew you.\n" << endl;
             alive = false;
         }
     }
@@ -94,15 +93,21 @@ void sphinxScene (Player &mainPlayer) {
         cin >> riddleAnswer;
         if(riddleAnswer.compare(Sphinx.getRiddleAns(i))==0) {
             cout << "Correct!" << endl;
-            break;
+
         }
-        else
+        else {
+            cout << "WRONG!!!!!!!!" << endl;
             Sphinx.remainingAttempts--;
+            i -= 1;
+            if (Sphinx.remainingAttempts == 0) {
+                break;
+            }
+        }
     }
     if (Sphinx.getRemainingAttempts() != 0) {
         cout << "\"Congratulations. You have passed the test of time.\"" << endl;
         if(Sphinx.getRemainingAttempts() == 3){
-        cout << "\"Take this sword, as a gift. It might prove useful in the future.\"" << endl;
+        cout << "\"Take this sword, as a gift. It might prove useful in the future.\"\n" << endl;
             mainPlayer.setHasSword();
         }
         questTwoPass = true;
@@ -124,7 +129,7 @@ void tavern(Player &mainPlayer){
             cin.clear();
             cin.ignore(10000,'\n');
         }else if(choice == 1 && fightCount < 3){
-            cout << "You enter the ring and made quick work of your opponent \n";
+            cout << "You enter the ring and made quick work of your opponent \n" <<endl;
             mainPlayer.addStrength();
             ++fightCount;
         }else if(choice == 1 && fightCount >= 3){
@@ -202,7 +207,7 @@ int main() {
         cin >> race;
         if(cin.fail() || race > 5 || race < 1){
             cin.clear();
-            cout <<"Selection not found. Try again.\n";
+            cout <<"Selection not found. Try again.\n" <<endl;
             cin.ignore(10000,'\n');
         }else{
             break;
