@@ -263,7 +263,7 @@ int main() {
     
     cin >> input;
     
-    if(cin.fail()){
+    if(cin.fail() || inuput < 0 || input > 2){
         cin.clear();
         cout <<"Selection not found. Try again.\n";
         cin.ignore(10000,'\n');
