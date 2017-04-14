@@ -6,3 +6,5 @@ To do list:
 * Dragon Side Quest
 * Castle Scene
 * Check for bugs
+
+There will onyl be two files at the end of the project, Entity.h and Game.cpp
