@@ -5,8 +5,8 @@ void cave (Player mainPlayer) {
   string caveEncounters[5] = {"some cave bats", "a giant centipede", "a bear", "a giant lizard", "a golem"};
   
   for (int i = 0; i < 6; i++) {
-    if (i > 5) {
-      cout << "You encounter caveEncounters[i].\nEnter 0 to fight or 1 to try running out of the cave" << endl;
+    if (i < 5) {
+      cout << "You encounter " << caveEncounters[i] << ".\nEnter 0 to fight or 1 to try running out of the cave" << endl;
       cin >> choice;
         
        if(cin.fail() || choice < 0 || choice > 1) {
