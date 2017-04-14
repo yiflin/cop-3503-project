@@ -91,7 +91,7 @@ void Player::addStrength(){
 
 void Player::addStealth(){
     int i = rand() % 10;
-    cout << "You gained " << i << " Strength points" << "\n";
+    cout << "You gained " << i << " Stealth points" << "\n";
     Player::addStealth(i);
 }
 
@@ -159,3 +159,4 @@ string Sphinx::getRiddleAns(int riddleNum) {
 int Sphinx::getRemainingAttempts() {
     return remainingAttempts;
 }
+
