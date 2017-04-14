@@ -115,10 +115,10 @@ class Sphinx {
 private:
     string riddle;
     string riddleAns;
-    int remainingAttempts;
     int riddleNum;
 public:
     Sphinx();
+    int remainingAttempts;
     string getRiddle(int);
     int getRemainingAttempts();
     string getRiddleAns(int);
@@ -132,15 +132,15 @@ string Sphinx::getRiddle(int randNum) {
     switch(randNum){
     case 1:
         riddleNum = 1;
-        return "some riddle 1";
+        return "What is 2+2?";
         break;
     case 2:
         riddleNum = 2;
-        return "some riddle 2";
+        return "What is zero factorial?";
         break;
     case 3:
         riddleNum = 3;
-        return "some riddle 3";
+        return "What year is it?";
         break;
     default:
         return "some riddle 0";
@@ -150,13 +150,13 @@ string Sphinx::getRiddle(int randNum) {
 string Sphinx::getRiddleAns(int riddleNum) {
     switch(riddleNum) {
     case 1:
-        return "riddle answer 1";
+        return "4";
         break;
     case 2:
-        return "riddle answer 2";
+        return "1";
         break;
     case 3:
-        return "riddle answer 3";
+        return "2017";
         break;
     default:
         return "riddle answer 0";

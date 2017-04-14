@@ -34,7 +34,7 @@ bool fight(Player you, Player enemy){
 void trollScene(Player mainPlayer){
     int input;
     int hideCount = 0;
-    cout<<"Trolls! Enter 1 to attack, 0 to hide."<<endl;
+    cout<<"Trolls!\n0. Hide.\n1. Attack the trolls."<<endl;
     cin>>input;
     Player troll(40,1,"Troll");
     while(hideCount != 6 && input == 0){
@@ -60,21 +60,21 @@ void trollScene(Player mainPlayer){
 }
 void dragonScene (Player &mainPlayer) {
     int input;
-    cout << "There is a sleeping dragon, press 0 to try and sneak past it, press 1 to fight it.";
+    cout << "In the distance you spot a dragon in your path. There are no other routes. You get closer and notice it is fast asleep.\n0. Try and sneak past the dragon.\n1. Fight the dragon.";
     cin >> input;
     Player dragon (25,20,"Dragon");
     
     switch (input) {
         case 0: if (mainPlayer.getStealth() > dragon.getStealth()) {
-            cout << "You managed to avoid waking up the dragon and sneaked past." << endl;
+            cout << "You successfully snuck past the dragon while it slept." << endl;
             questThreePass = true;
         }
         else {
-            cout << "you woke up the dragon and it kills you" << endl;
+            cout << "You woke the dragon and in a fit of rage it kills you." << endl;
             alive = false;
         }
         case 1: if (mainPlayer.getHasSword()) {
-            cout << "You use your sword and manage to slay the dragon" << endl;
+            cout << "You use your sword and effortlessly slay the dragon." << endl;
             questThreePass = true;
         }
         else if (fight (mainPlayer, dragon)) {
@@ -93,31 +93,33 @@ void sphinxScene (Player &mainPlayer) {
     Sphinx Sphinx;
     cout << "You encounter a Sphinx, it wants to ask you three riddles before you may pass." << endl;
     for (int i = 1; i < 4; i++) {
-        if (Sphinx.getRemainingAttempts() == 0) {
-            cout << "You are out of tries. Game Over.";
-            alive = false;
-        }
         cout << Sphinx.getRiddle(i) << endl;
         cin >> riddleAnswer;
-        if (riddleAnswer.compare(Sphinx.getRiddleAns(i)) == 0) {
+        if(riddleAnswer.compare(Sphinx.getRiddleAns(i))==0) {
             cout << "Correct!" << endl;
             break;
         }
         else
-            Sphinx.getRemainingAttempts();
+            Sphinx.remainingAttempts--;
     }
     if (Sphinx.getRemainingAttempts() != 0) {
-        cout << "Congratulations" << endl;
+        cout << "\"Congratulations. You have passed the test of time.\"" << endl;
+        if(Sphinx.getRemainingAttempts() == 3){
+        cout << "\"Take this sword, as a gift. It might prove useful in the future.\"" << endl;
+            mainPlayer.setHasSword();
+        }
         questTwoPass = true;
+    }else if (Sphinx.getRemainingAttempts() == 0) {
+        cout << "You are out of tries. Game Over.";
+        alive = false;
     }
 }
+
 void tavern(Player &mainPlayer){
-    
     cout << "You enter the tavern and notice they are holding bar fights."<<endl;
     int choice = 0;
-    
     while(true){
-        cout << "What would you like to do?\n1: Fight. 0: Leave" << endl;
+        cout << "What would you like to do?\n0. Leave the tavern.\n1. Fight." << endl;
         cin >> choice;
         if(cin.fail() || choice < 0 || choice > 1){
             cout << "Invalid Input, try again \n";
@@ -222,7 +224,7 @@ int main() {
     
     while(alive){
         
-        cout<<"You are on a road.\n0. Go forward.\n1. Explore.\n2. View stats."<<endl;
+        cout<<"You are back on a road.\n0. Go forward.\n1. Explore.\n2. View stats."<<endl;
         cin>>input;
         
         if(cin.fail()){
