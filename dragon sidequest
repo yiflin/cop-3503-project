@@ -1,0 +1,34 @@
+void cave (Player mainPlayer) {
+  cout << "you have discovered a cave.\nYou decide to enter in the hopes that there might be treasure.\n"
+  int choice;
+  
+  string caveEncounters[5] = ["some cave bats", "a giant centipede", "a bear", "a giant lizard", "a golem"]
+  
+  for (int i = 0; i < 6; i++) {
+    if (i > 5) {
+      cout << "You encounter caveEncounters[i].\nEnter 0 to fight or 1 to try running out of the cave" << endl;
+      cin >> choice;
+        
+       if(cin.fail() || choice < 0 || choice > 1) {
+           cout << "Invalid Input, try again \n";
+           cin.clear();
+           cin.ignore(10000,'\n')
+       }
+       else if (choice == 0) {
+         cout << "You kill the beast and absorbed their strength" << endl;
+         mainPlayer.addStrength();       
+       }
+       else if (choice == 1) {
+         cout << "You managed to escape from the cave beast" << endl;
+         mainPlayer.addStealth();
+         i = 6;
+       }
+    }
+  
+    if (i = 5) {
+      cout << "You have discovered a treasure chest at the end of the cave.\nEagerly, you open the chest and discover that it is empty.\nYou decide to leave the cave dissapointed."
+    }
+    
+  }
+
+}
