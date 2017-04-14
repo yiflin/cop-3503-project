@@ -159,3 +159,4 @@ string Sphinx::getRiddleAns(int riddleNum) {
 int Sphinx::getRemainingAttempts() {
     return remainingAttempts;
 }
+
