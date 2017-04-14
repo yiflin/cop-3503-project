@@ -9,11 +9,6 @@ bool questOnePass = false;
 bool questTwoPass = false;
 bool questThreePass = false;
 
-string gameOver(){
-alive = false;
-return "GAME OVER";
-}
-
 bool fight(Player you, Player enemy){
     int rng = rand() % 100 +1;
     if(you.getStrength() >= enemy.getStrength()){
