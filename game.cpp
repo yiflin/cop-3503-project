@@ -3,7 +3,8 @@
 #include <string>
 
 using namespace std;
-int fightCount = 0;
+
+
 bool alive;
 bool questOnePass = false;
 bool questTwoPass = false;
@@ -26,12 +27,12 @@ bool fight(Player you, Player enemy){
     }
 }
 
-void trollScene(Player mainPlayer){
+void trollScene(Player &mainPlayer){
     int input;
     int hideCount = 0;
     cout<<"Trolls!\n0. Hide.\n1. Attack the trolls."<<endl;
     cin>>input;
-    Player troll(40,1,"Troll");
+    Player troll(15,1,"Troll");
     while(hideCount != 6 && input == 0){
         hideCount++;
         cout<<"You're crouching behind a rock. The trolls don't seem to have noticed you yet. Enter 1 to attack, 0 to hide."<<endl;
@@ -57,7 +58,7 @@ void dragonScene (Player &mainPlayer) {
     int input;
     cout << "In the distance you spot a dragon in your path. There are no other routes. You get closer and notice it is fast asleep.\n0. Try and sneak past the dragon.\n1. Fight the dragon.";
     cin >> input;
-    Player dragon (25,20,"Dragon");
+    Player dragon (45,20,"Dragon");
     
     switch (input) {
         case 0: if (mainPlayer.getStealth() > dragon.getStealth()) {
@@ -117,9 +118,8 @@ void sphinxScene (Player &mainPlayer) {
 }
 
 void tavern(Player &mainPlayer){
-
-    cout << "While exploring you notice a building in the distance, upon closer inspection you see a sign that says: Drunken Horseman Tavern \nYou enter the tavern and notice they are holding bar fights."<<endl;
-
+    cout << "While exploring you notice a building in the distance, upon closer inspection you see a sign that says: Drunken Horseman Tavern\nYou enter the tavern and notice they are holding bar fights."<<endl;
+    int fightCount = 0;
     int choice = 0;
     while(true){
         cout << "What would you like to do?\n0. Leave the tavern.\n1. Fight." << endl;
@@ -141,6 +141,37 @@ void tavern(Player &mainPlayer){
     }
 }
 
+void cave (Player &mainPlayer){
+    cout << "You have discovered a cave.\nYou decide to enter in the hopes that there might be treasure.\n";
+    int choice;
+    
+    string caveEncounters[] = {"some cave bats", "a giant centipede", "a bear", "a giant lizard", "a golem"};
+    
+    for (int i = 0; i < 6; i++) {
+        if (i < 5) {
+            cout << "You encounter "<<caveEncounters[i]<<".\n0. Fight them\n1. Run out of the cave." << endl;
+            cin >> choice;
+            if(cin.fail() || choice < 0 || choice > 1) {
+                cout << "Invalid Input, try again \n";
+                cin.clear();
+                cin.ignore(10000,'\n');
+            }
+            else if (choice == 0){
+                cout << "You kill the beast and absorbed their strength" << endl;
+                mainPlayer.addStrength();
+            }
+            else if (choice == 1) {
+                cout << "You managed to escape from the cave beast" << endl;
+                mainPlayer.addStealth();
+                i = 6;
+            }
+        }
+        if (i == 5) {
+            cout << "You have discovered a treasure chest at the end of the cave.\nEagerly, you open the chest and discover that it is empty.\nYou decide to leave the cave dissapointed.";
+        }
+    }
+}
+
 void junction(int junctionType, Player &mainPlayer){
     
 switch(junctionType){
@@ -151,7 +182,7 @@ switch(junctionType){
     //sphinxSideQuest(mainPlayer);
     break;
   case 2:
-   // dragonSideQuest(mainPlayer);
+    cave(mainPlayer);
     break;
   default:
     cout<<"You've reached a dead end in the road.";
@@ -170,7 +201,6 @@ int main() {
     cout << "Enter Name: ";
     cin >> name;
     Player mainPlayer(0,0,name);
-    
     while(true){
         cout << "Select your race:\n";
         cout <<"1. Elf\n2. Orc\n3. Nord\n4. Goblin\n5. Human\n";
@@ -242,7 +272,7 @@ int main() {
             }else if(questThreePass == false){
                 dragonScene(mainPlayer);
             }else{
-                //castleScene();
+                //castleScene(mainPlayer);
             }
         }else if(input == 1){
             if(questOnePass == false){
@@ -250,7 +280,7 @@ int main() {
             }else if(questTwoPass == false){
                 //junction(1, mainPlayer);
             }else if(questThreePass == false){
-                //junction(2, mainPlayer);
+                junction(2, mainPlayer);
             }
         }else if(input == 2){
             mainPlayer.printStats(race);

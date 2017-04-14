@@ -15,9 +15,6 @@ private:
     int strength;
     int stealth;
 public:
-    
-    
-    Player();
     Player(int, int, string);
     
     void setName(string);
@@ -42,10 +39,6 @@ public:
     int getStealth();
 };
 
-Player::Player(){
-    this->name = "";
-    this->hasSword = false;
-}
 int Player::getStrength(){
     return strength;
 }
@@ -92,13 +85,13 @@ void Player::printStats(int race) {
 
 void Player::addStrength(){
     int i = rand() % 10;
-    cout << "You gained " << i << " Strength points" << "\n" <<endl;
+    cout << "You gained " << i << " Strength points" << "\n";
     Player::addStrength(i);
 }
 
 void Player::addStealth(){
     int i = rand() % 10;
-    cout << "You gained " << i << " Strength points" << "\n" <<endl;
+    cout << "You gained " << i << " Strength points" << "\n";
     Player::addStealth(i);
 }
 
@@ -143,7 +136,7 @@ string Sphinx::getRiddle(int randNum) {
         return "What year is it?";
         break;
     default:
-        return "some riddle 0";
+        return "";
     }
 }
 
@@ -159,7 +152,7 @@ string Sphinx::getRiddleAns(int riddleNum) {
         return "2017";
         break;
     default:
-        return "riddle answer 0";
+        return "";
     }
 }
 
