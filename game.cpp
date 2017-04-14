@@ -6,6 +6,8 @@ using namespace std;
 int fightCount = 0;
 bool alive;
 bool questOnePass = false;
+bool questTwoPass = false;
+bool questThreePass = false;
 
 string gameOver(){
 alive = false;
@@ -34,7 +36,7 @@ void trollScene(Player mainPlayer){
     int hideCount = 0;
     cout<<"Trolls! Enter 1 to attack, 0 to hide."<<endl;
     cin>>input;
-    Player troll(15,1,"Troll");
+    Player troll(40,1,"Troll");
     while(hideCount != 6 && input == 0){
         hideCount++;
         cout<<"You're crouching behind a rock. The trolls don't seem to have noticed you yet. Enter 1 to attack, 0 to hide."<<endl;
@@ -56,23 +58,76 @@ void trollScene(Player mainPlayer){
     }
 
 }
+void dragonScene (Player &mainPlayer) {
+    int input;
+    cout << "There is a sleeping dragon, press 0 to try and sneak past it, press 1 to fight it.";
+    cin >> input;
+    Player dragon (25,20,"Dragon");
+    
+    switch (input) {
+        case 0: if (mainPlayer.getStealth() > dragon.getStealth()) {
+            cout << "You managed to avoid waking up the dragon and sneaked past." << endl;
+            questThreePass = true;
+        }
+        else {
+            cout << "you woke up the dragon and it kills you" << endl;
+            alive = false;
+        }
+        case 1: if (mainPlayer.getHasSword()) {
+            cout << "You use your sword and manage to slay the dragon" << endl;
+            questThreePass = true;
+        }
+        else if (fight (mainPlayer, dragon)) {
+            cout << "You fought the dragon and slew it." << endl;
+            questThreePass = true;
+        }
+        else {
+            cout << "The dragon slew you." << endl;
+            alive = false;
+        }
+    }
+}
 
+void sphinxScene (Player &mainPlayer) {
+    string riddleAnswer;
+    Sphinx Sphinx;
+    cout << "You encounter a Sphinx, it wants to ask you three riddles before you may pass." << endl;
+    for (int i = 1; i < 4; i++) {
+        if (Sphinx.getRemainingAttempts() == 0) {
+            cout << "You are out of tries. Game Over.";
+            alive = false;
+        }
+        cout << Sphinx.getRiddle(i) << endl;
+        cin >> riddleAnswer;
+        if (riddleAnswer.compare(Sphinx.getRiddleAns(i)) == 0) {
+            cout << "Correct!" << endl;
+            break;
+        }
+        else
+            Sphinx.getRemainingAttempts();
+    }
+    if (Sphinx.getRemainingAttempts() != 0) {
+        cout << "Congratulations" << endl;
+        questTwoPass = true;
+    }
+}
 void tavern(Player &mainPlayer){
     
     cout << "You enter the tavern and notice they are holding bar fights."<<endl;
     int choice = 0;
+    
     while(true){
-        cout << "What would you like to do?\n0: Fight. 1: Leave" << endl;
+        cout << "What would you like to do?\n1: Fight. 0: Leave" << endl;
         cin >> choice;
         if(cin.fail() || choice < 0 || choice > 1){
             cout << "Invalid Input, try again \n";
             cin.clear();
             cin.ignore(10000,'\n');
-        }else if(choice == 0 && fightCount < 3){
+        }else if(choice == 1 && fightCount < 3){
             cout << "You enter the ring and made quick work of your opponent \n";
             mainPlayer.addStrength();
             ++fightCount;
-        }else if(choice == 0 && fightCount >= 3){
+        }else if(choice == 1 && fightCount >= 3){
             cout << "You have grown too tired for another fight." << endl;
         }
         else{
@@ -82,25 +137,27 @@ void tavern(Player &mainPlayer){
 }
 
 void junction(int junctionType, Player &mainPlayer){
+    
 switch(junctionType){
   case 0:
     tavern(mainPlayer);
     break;
   case 1:
-
     //sphinxSideQuest(mainPlayer);
     break;
   case 2:
    // dragonSideQuest(mainPlayer);
     break;
-        
   default:
+    cout<<"You've reached a dead end in the road.";
     break;
   }
+    
 }
 
 
 int main() {
+    
     alive = true;
     string name;
     int input;
@@ -113,7 +170,7 @@ int main() {
         cout << "Select your race:\n";
         cout <<"1. Elf\n2. Orc\n3. Nord\n4. Goblin\n5. Human\n";
         cin >> race;
-        if(cin.fail() || race > 5 || race <1){
+        if(cin.fail() || race > 5 || race < 1){
             cin.clear();
             cout <<"Selection not found. Try again.\n";
             cin.ignore(10000,'\n');
@@ -150,6 +207,7 @@ int main() {
     cout << "Welcome, "<<mainPlayer.getName()<<". You are on a road.\n0. Go forward.\n1. Explore.\n2. View stats."<<endl;
     
     cin >> input;
+    
     if(cin.fail()){
         cin.clear();
         cout <<"Selection not found. Try again.\n";
@@ -159,12 +217,14 @@ int main() {
     }else if(input == 1){
         junction(0, mainPlayer);
     }else if(input == 2){
-        mainPlayer.printStats();
+        mainPlayer.printStats(race);
     }
     
     while(alive){
+        
         cout<<"You are on a road.\n0. Go forward.\n1. Explore.\n2. View stats."<<endl;
         cin>>input;
+        
         if(cin.fail()){
             cin.clear();
             cout <<"Selection not found. Try again.\n";
@@ -172,15 +232,26 @@ int main() {
         }else if(input == 0){
             if(questOnePass == false){
                 trollScene(mainPlayer);
+            }else if(questTwoPass == false){
+                sphinxScene(mainPlayer);
+            }else if(questThreePass == false){
+                dragonScene(mainPlayer);
             }else{
-                //sphinxScene();
+                //castleScene();
             }
         }else if(input == 1){
-            junction(1, mainPlayer);
+            if(questOnePass == false){
+                junction(0, mainPlayer);
+            }else if(questTwoPass == false){
+                //junction(1, mainPlayer);
+            }else if(questThreePass == false){
+                //junction(2, mainPlayer);
+            }
         }else if(input == 2){
-            mainPlayer.printStats();
+            mainPlayer.printStats(race);
         }
     }
     
   return 0;
+    
 }
