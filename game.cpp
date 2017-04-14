@@ -280,7 +280,7 @@ int main() {
         cout<<"You are back on a road.\n0. Go forward.\n1. Explore.\n2. View stats."<<endl;
         cin>>input;
         
-        if(cin.fail()){
+        if(cin.fail() || input < 0 || input > 2){
             cin.clear();
             cout <<"Selection not found. Try again.\n";
             cin.ignore(10000,'\n');
