@@ -4,18 +4,18 @@
 
 using namespace std;
 
-
+string title[] = {"Elf","Orc","Nord","Goblin","Human"};
 /******************
 //Player Class//
 ******************/
 class Player {
 private:
-    
-public:
     string name;
     bool hasSword;
     int strength;
     int stealth;
+public:
+    
     
     Player();
     Player(int, int, string);
@@ -27,7 +27,7 @@ public:
     
    
     
-    void printStats();
+    void printStats(int);
     
     bool attack(Player);
     
@@ -84,24 +84,20 @@ bool Player::getHasSword() {
 }
 
 
-void Player::printStats() {
-    cout << "Player Name: " << name << endl;
+void Player::printStats(int race) {
+    cout << name << ", the "<< title[race-1] << endl;
     cout << "Strength: " << strength << endl;
     cout << "Stealth: " << stealth << endl;
 }
 
 void Player::addStrength(){
-    int i = 0;
-    srand(time(NULL));
-    i = std::rand() % 10;
+    int i = rand() % 10;
     cout << "You gained " << i << " Strength points" << "\n";
     Player::addStrength(i);
 }
 
 void Player::addStealth(){
-    int i = 0;
-    srand(time(NULL));
-    i = std::rand() % 10;
+    int i = rand() % 10;
     cout << "You gained " << i << " Strength points" << "\n";
     Player::addStealth(i);
 }
