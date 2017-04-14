@@ -128,7 +128,7 @@ void tavern(Player &mainPlayer){
             cin.clear();
             cin.ignore(10000,'\n');
         }else if(choice == 1 && fightCount < 3){
-            cout << "You enter the ring and made quick work of your opponent \n";
+            cout << "You enter the ring and made quick work of your opponent \n" <<endl;
             mainPlayer.addStrength();
             ++fightCount;
         }else if(choice == 1 && fightCount >= 3){
@@ -176,7 +176,7 @@ int main() {
         cin >> race;
         if(cin.fail() || race > 5 || race < 1){
             cin.clear();
-            cout <<"Selection not found. Try again.\n";
+            cout <<"Selection not found. Try again.\n" <<endl;
             cin.ignore(10000,'\n');
         }else{
             break;
