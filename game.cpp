@@ -92,10 +92,16 @@ void sphinxScene (Player &mainPlayer) {
         cin >> riddleAnswer;
         if(riddleAnswer.compare(Sphinx.getRiddleAns(i))==0) {
             cout << "Correct!" << endl;
-            break;
+
         }
-        else
+        else {
+            cout << "WRONG!!!!!!!!" << endl;
             Sphinx.remainingAttempts--;
+            i -= 1;
+            if (Sphinx.remainingAttempts == 0) {
+                break;
+            }
+        }
     }
     if (Sphinx.getRemainingAttempts() != 0) {
         cout << "\"Congratulations. You have passed the test of time.\"" << endl;
