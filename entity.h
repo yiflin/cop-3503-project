@@ -80,7 +80,7 @@ bool Player::getHasSword() {
 void Player::printStats(int race) {
     cout << name << ", the "<< title[race-1] << endl;
     cout << "Strength: " << strength << endl;
-    cout << "Stealth: " << stealth << endl;
+    cout << "Stealth: " << stealth << "\n"<< endl;
 }
 
 void Player::addStrength(){
