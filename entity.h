@@ -92,13 +92,13 @@ void Player::printStats(int race) {
 
 void Player::addStrength(){
     int i = rand() % 10;
-    cout << "You gained " << i << " Strength points" << "\n";
+    cout << "You gained " << i << " Strength points" << "\n" <<endl;
     Player::addStrength(i);
 }
 
 void Player::addStealth(){
     int i = rand() % 10;
-    cout << "You gained " << i << " Strength points" << "\n";
+    cout << "You gained " << i << " Strength points" << "\n" <<endl;
     Player::addStealth(i);
 }
 

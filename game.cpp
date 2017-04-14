@@ -116,7 +116,9 @@ void sphinxScene (Player &mainPlayer) {
 }
 
 void tavern(Player &mainPlayer){
-    cout << "You enter the tavern and notice they are holding bar fights."<<endl;
+
+    cout << "While exploring you notice a building in the distance, upon closer inspection you see a sign that says: Drunken Horseman Tavern \nYou enter the tavern and notice they are holding bar fights."<<endl;
+
     int choice = 0;
     while(true){
         cout << "What would you like to do?\n0. Leave the tavern.\n1. Fight." << endl;
