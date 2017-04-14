@@ -7,4 +7,4 @@ To do list:
 * Castle Scene
 * Check for bugs
 
-There will onyl be two files at the end of the project, Entity.h and Game.cpp
+There will only be two files at the end of the project, Entity.h and Game.cpp
