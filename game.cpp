@@ -166,7 +166,7 @@ void cave (Player &mainPlayer){
                 i = 6;
             }
         }
-        if (i == 5) {
+        else if (i == 5) {
             cout << "You have discovered a treasure chest at the end of the cave.\nEagerly, you open the chest and discover that it is empty.\nYou decide to leave the cave dissapointed.";
         }
     }
